@@ -26,6 +26,7 @@ export const Tasks = () => {
       todoSection={
         !!size(todoTasks) && (
           <DraggableFromList
+            key={todoTasks}
             data={[...todoTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
             Component={(props) => <Task {...props} />}
             onDragEnd={handleCompleteTask}
@@ -35,6 +36,7 @@ export const Tasks = () => {
       completedSection={
         !!size(completedTasks) && (
           <DroppableList
+            key={completedTasks}
             data={[...completedTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
             Component={(props) => <Task {...props} />}
           />

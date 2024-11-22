@@ -5,7 +5,9 @@ import { styles } from "./styles";
 export const DashboardLayout = ({ headerSection, todoSection, completedSection }) => {
   return (
     <Flex direction="column" height="100%">
-      <Heading level={2}>{headerSection}</Heading>
+      <Heading marginTop="size-300" marginBottom="size-500">
+        {headerSection}
+      </Heading>
 
       <Flex UNSAFE_className={styles.dashboard} direction="row" width="100%" height="100%">
         <View

@@ -1,7 +1,8 @@
-import { Flex, Heading, View } from "@adobe/react-spectrum";
+import { Divider, Flex, View } from "@adobe/react-spectrum";
 import { cx } from "@emotion/css";
+import { Chip } from "../../../../library/Atoms/Chip";
+import { Heading } from "../../../../library/Atoms/Heading";
 import { Icon } from "../../../../library/Atoms/Icon";
-import { Separator } from "../../../../library/Atoms/Separator";
 import { SecondaryText, Text } from "../../../../library/Atoms/Text";
 import { styles } from "./styles";
 
@@ -13,10 +14,11 @@ export const TaskLayout = ({
   seeMoreBtnSection,
   type,
   preview,
+  completed,
 }) => {
   return (
     <View
-      UNSAFE_className={cx(styles.layout, preview && styles.preview)}
+      UNSAFE_className={cx(!completed && styles.layout, preview && styles.preview)}
       backgroundColor="gray-100"
       borderColor="gray-400"
       borderWidth="thin"
@@ -42,11 +44,15 @@ export const TaskLayout = ({
         <SecondaryText>Due at: {dueAtSection}</SecondaryText>
       </Flex>
 
-      <Separator />
+      <Divider marginY="size-200" size="S" />
 
       <Text className={styles.description}>{descriptionSection}</Text>
 
-      <Flex marginTop="size-300">{seeMoreBtnSection}</Flex>
+      <Flex direction="row" justifyContent="space-between" marginTop="size-300">
+        {seeMoreBtnSection}
+
+        {completed && <Chip>Completed</Chip>}
+      </Flex>
     </View>
   );
 };

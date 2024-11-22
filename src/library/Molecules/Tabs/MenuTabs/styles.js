@@ -5,6 +5,6 @@ export const styles = {
     font-size: 14px;
     font-weight: 600;
 
-    cursor: "pointer";
+    cursor: pointer;
   `,
 };

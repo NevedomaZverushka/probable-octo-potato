@@ -1,9 +1,9 @@
 import { Heading as SpectrumHeading } from "@adobe/react-spectrum";
 import { styles } from "./styles";
 
-export const Heading = ({ children }) => {
+export const Heading = ({ children, level, ...props }) => {
   return (
-    <SpectrumHeading UNSAFE_className={styles.heading} marginTop="size-300" marginBottom="size-500" level={2}>
+    <SpectrumHeading UNSAFE_className={styles.heading} level={level ?? 2} {...props}>
       {children}
     </SpectrumHeading>
   );
