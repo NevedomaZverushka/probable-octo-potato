@@ -1,8 +1,45 @@
-import { useStore } from "../../hooks/useStore";
+import { size } from "lodash";
+import { useCallback } from "react";
+import { useDispatch } from "../../hooks/useDispatch";
+import { retrieveCompletedTasks, retrieveTodoTasks, useStore } from "../../hooks/useStore";
+import { DashboardLayout } from "../../library/Layouts/DashboardLayout";
+import { DraggableFromList } from "../../library/Molecules/DraggableList/DraggableFromList";
+import { DroppableList } from "../../library/Molecules/DraggableList/DroppableList";
+import { Task } from "./components/Task/Task";
 
 export const Tasks = () => {
-  const tasks = useStore((state) => state.tasks);
-  console.log(tasks);
+  const todoTasks = useStore(retrieveTodoTasks);
+  const completedTasks = useStore(retrieveCompletedTasks);
 
-  return null;
+  const { onCompleteTask } = useDispatch();
+
+  const handleCompleteTask = useCallback(
+    (ids) => {
+      ids.forEach((id) => onCompleteTask(id));
+    },
+    [onCompleteTask]
+  );
+
+  return (
+    <DashboardLayout
+      headerSection={"Review your tasks"}
+      todoSection={
+        !!size(todoTasks) && (
+          <DraggableFromList
+            data={[...todoTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
+            Component={Task}
+            onDragEnd={handleCompleteTask}
+          />
+        )
+      }
+      completedSection={
+        !!size(completedTasks) && (
+          <DroppableList
+            data={[...completedTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
+            Component={Task}
+          />
+        )
+      }
+    />
+  );
 };

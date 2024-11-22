@@ -13,8 +13,8 @@ const Tab = ({ item, state, onClick }) => {
   return (
     <div {...tabProps} ref={ref} onClick={handleClick}>
       <View
-        UNSAFE_style={styles.tab}
-        backgroundColor={isSelected && "blue-500"}
+        UNSAFE_className={styles.tab}
+        backgroundColor={isSelected && "blue-200"}
         padding="size-115"
         borderRadius="medium"
         colorVersion="6"
@@ -33,9 +33,7 @@ export const MenuTabs = ({ onClick, ...restProps }) => {
   let state = useTabListState(restProps);
   let { tabListProps } = useTabList(restProps, state, ref);
 
-  let { focusProps } = useFocusRing({
-    within: true,
-  });
+  let { focusProps } = useFocusRing({ within: true });
 
   return (
     <div {...mergeProps(tabListProps, focusProps)} ref={ref}>

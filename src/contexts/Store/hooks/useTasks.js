@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { API } from "../../../requests";
 
 export const useTasks = () => {
@@ -7,11 +7,20 @@ export const useTasks = () => {
   useEffect(() => {
     const func = async () => {
       const res = await API.getTasks();
-      setTasks(res);
+      setTasks(res.tasks);
     };
 
     func();
   }, []);
 
-  return [{ tasks }, {}];
+  const onCompleteTask = useCallback((id) => {
+    setTasks((prev) =>
+      prev.map((task) => {
+        if (task.taskId === id) return { ...task, isCompleted: true };
+        return task;
+      })
+    );
+  }, []);
+
+  return [{ tasks }, { onCompleteTask }];
 };

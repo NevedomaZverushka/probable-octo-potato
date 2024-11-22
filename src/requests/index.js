@@ -2,7 +2,6 @@ import axios from "axios";
 
 const TasksAPI = {
   getTasks: async () => {
-    // console.log(process.env.REACT_APP_DELPHI_API_KEY);
     try {
       const headers = {
         Authorization: `Bearer ${process.env.REACT_APP_DELPHI_AUTH_TOKEN}`,

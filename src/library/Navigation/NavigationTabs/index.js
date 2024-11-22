@@ -3,17 +3,17 @@ import TaskList from "@spectrum-icons/workflow/ViewWeek";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Item } from "react-stately";
+import { SubHeading } from "../../Atoms/Heading";
 import { MenuTabs } from "../../Molecules/Tabs/MenuTabs/index";
-import { styles } from "./styles";
 
 export const NavigationTabs = () => {
   const navigate = useNavigate();
 
-  const onChangePage = useCallback((page) => navigate(`/${page}`), []);
+  const onChangePage = useCallback((page) => navigate(`/${page}`), [navigate]);
 
   return (
     <>
-      <span style={styles.menuLabel}>Browse</span>
+      <SubHeading>Browse</SubHeading>
 
       <MenuTabs onClick={onChangePage}>
         <Item

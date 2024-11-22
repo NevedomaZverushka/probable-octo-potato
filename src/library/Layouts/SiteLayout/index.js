@@ -1,8 +1,9 @@
 import { Flex, View } from "@adobe/react-spectrum";
 import { Outlet } from "react-router-dom";
 import { NavigationTabs } from "../../Navigation/NavigationTabs";
+import { styles } from "./styles";
 
-export const PageLayout = ({ children }) => {
+export const SiteLayout = () => {
   return (
     <Flex direction={{ L: "row", S: "column" }} height="100vh">
       <View
@@ -24,7 +25,13 @@ export const PageLayout = ({ children }) => {
         <NavigationTabs />
       </View>
 
-      <View backgroundColor="gray-75" width="100%">
+      <View
+        UNSAFE_className={styles.contentSection}
+        backgroundColor="gray-75"
+        width="100%"
+        paddingStart="size-500"
+        paddingY="size-500"
+      >
         <Outlet />
       </View>
     </Flex>
