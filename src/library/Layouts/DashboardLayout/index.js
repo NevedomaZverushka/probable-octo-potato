@@ -38,7 +38,7 @@ export const DashboardLayout = ({ headerSection, todoSection, completedSection }
           width="50%"
           minWidth="size-5000"
         >
-          <Flex direction="column">
+          <Flex direction="column" height="100%">
             <SubHeading>Completed tasks</SubHeading>
 
             {completedSection}

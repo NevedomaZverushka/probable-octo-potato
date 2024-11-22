@@ -1,21 +1,30 @@
 import { Flex, Heading, View } from "@adobe/react-spectrum";
-import { Icon } from "../../../Atoms/Icon";
-import { Separator } from "../../../Atoms/Separator";
-import { SecondaryText, Text } from "../../../Atoms/Text";
+import { cx } from "@emotion/css";
+import { Icon } from "../../../../library/Atoms/Icon";
+import { Separator } from "../../../../library/Atoms/Separator";
+import { SecondaryText, Text } from "../../../../library/Atoms/Text";
 import { styles } from "./styles";
 
-export const TaskLayout = ({ titleSection, idSection, descriptionSection, dueAtSection, seeMoreBtnSection, type }) => {
+export const TaskLayout = ({
+  titleSection,
+  idSection,
+  descriptionSection,
+  dueAtSection,
+  seeMoreBtnSection,
+  type,
+  preview,
+}) => {
   return (
     <View
+      UNSAFE_className={cx(styles.layout, preview && styles.preview)}
       backgroundColor="gray-100"
       borderColor="gray-400"
       borderWidth="thin"
       borderRadius="medium"
-      marginBottom="size-300"
       paddingX="size-300"
       paddingY="size-200"
       colorVersion="6"
-      maxWidth="100%"
+      maxWidth={preview ? "size-6000" : "100%"}
     >
       <Flex direction="row" justifyContent="space-between" alignItems="end">
         <Flex direction="row" justifyContent="start" gap="size-300" alignItems="center">

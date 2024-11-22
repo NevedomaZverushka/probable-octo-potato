@@ -5,6 +5,7 @@ import { DEFAULT_THEME } from "./constants";
 import { StoreProvider } from "./contexts/Store/StoreContext";
 import { SiteLayout } from "./library/Layouts/SiteLayout";
 import { Tasks } from "./pages/Tasks/Tasks";
+import "./utils/globalStyles";
 
 function App() {
   return (
