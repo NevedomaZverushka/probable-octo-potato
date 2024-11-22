@@ -1,12 +1,11 @@
 import { Flex, View } from "@adobe/react-spectrum";
 import { useRef } from "react";
 import { useButton } from "react-aria";
-import { Heading } from "../../Heading";
 import { styles } from "./styles";
 
 const noop = () => {};
 
-export const PrimaryButton = ({ children, icon, onClick, ...props }) => {
+export const IconButton = ({ children, onClick, ...props }) => {
   let ref = useRef();
   let { buttonProps } = useButton({ onPress: onClick || noop, children, ...props }, ref);
 
@@ -17,17 +16,14 @@ export const PrimaryButton = ({ children, icon, onClick, ...props }) => {
         backgroundColor="blue-200"
         borderColor="gray-500"
         borderWidth="thin"
-        paddingX="size-200"
-        paddingY="size-75"
+        padding="size-75"
         borderRadius="medium"
         colorVersion="6"
+        width="size-500"
+        height="size-500"
       >
-        <Flex direction="row" gap="size-100" alignItems="center">
-          <Heading level={3} marginTop="size-0" marginBottom="size-75">
-            {children}
-          </Heading>
-
-          {icon}
+        <Flex direction="row" alignItems="center" justifyContent="center">
+          {children}
         </Flex>
       </View>
     </div>

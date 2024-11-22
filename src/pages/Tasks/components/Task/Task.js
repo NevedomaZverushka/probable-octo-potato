@@ -30,6 +30,7 @@ export const Task = ({ id, isPreview }) => {
           dueAtSection={format(new Date(task.dueOnDate), "MMM dd, yyyy HH:mm")}
           buttonSection={task.isCompleted ? null : task.button}
           onSubmit={handleCompleteTask}
+          completed={task.isCompleted}
         />
       }
       type={task.iconType.toLowerCase().replace(/\s/g, "")}

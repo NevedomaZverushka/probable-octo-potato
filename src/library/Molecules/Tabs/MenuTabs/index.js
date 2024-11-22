@@ -2,6 +2,7 @@ import { Flex, View } from "@adobe/react-spectrum";
 import { useCallback, useRef } from "react";
 import { mergeProps, useFocusRing, useTab, useTabList } from "react-aria";
 import { useTabListState } from "react-stately";
+import { Heading } from "../../../Atoms/Heading";
 import { styles } from "./styles";
 
 const Tab = ({ item, state, onClick }) => {
@@ -19,9 +20,11 @@ const Tab = ({ item, state, onClick }) => {
         borderRadius="medium"
         colorVersion="6"
       >
-        <Flex direction="row" alignItems="center" gap="size-100">
-          {item.rendered}
-        </Flex>
+        <Heading level={3} margin="size-0">
+          <Flex direction="row" alignItems="center" gap="size-200">
+            {item.rendered}
+          </Flex>
+        </Heading>
       </View>
     </div>
   );

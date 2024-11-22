@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 
 export const styles = {
-  tab: css`
+  button: css`
     cursor: pointer;
   `,
 };

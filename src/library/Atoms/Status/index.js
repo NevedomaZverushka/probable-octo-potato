@@ -10,10 +10,10 @@ import glucosetest from "../../../sources/icons/glukosetest.png";
 import mealtest from "../../../sources/icons/mealtest.png";
 import urine from "../../../sources/icons/urin.png";
 
-export const Icon = ({ type }) => {
+export const Status = ({ type }) => {
   const src = useMemo(() => {
     return { bag, urine, mealtest, glucosetest, feces, fasting, calendar, brain, bloodpressure }[type];
   }, [type]);
 
-  return <Avatar size={50} src={src} alt="default Adobe avatar" />;
+  return <Avatar size={50} src={src} alt={type} />;
 };
