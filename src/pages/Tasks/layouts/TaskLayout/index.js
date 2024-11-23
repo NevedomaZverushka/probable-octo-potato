@@ -1,7 +1,7 @@
-import { Divider, Flex, StatusLight, View } from "@adobe/react-spectrum";
+import { Divider, Flex, View } from "@adobe/react-spectrum";
 import { cx } from "@emotion/css";
 import { Heading } from "../../../../library/Atoms/Heading";
-import { Status } from "../../../../library/Atoms/Status";
+import { TaskType } from "../../../../library/Atoms/TaskType";
 import { SecondaryText, Text } from "../../../../library/Atoms/Text";
 import { styles } from "./styles";
 
@@ -11,6 +11,7 @@ export const TaskLayout = ({
   descriptionSection,
   dueAtSection,
   seeMoreBtnSection,
+  statusSection,
   type,
   preview,
   completed,
@@ -27,9 +28,9 @@ export const TaskLayout = ({
       colorVersion="6"
       maxWidth={preview ? "size-6000" : "100%"}
     >
-      <Flex direction="row" justifyContent="space-between" alignItems="end">
+      <Flex direction="row" justifyContent="space-between" alignItems="end" wrap="wrap" gap="size-200">
         <Flex direction="row" justifyContent="start" gap="size-300" alignItems="center">
-          <Status type={type} />
+          <TaskType type={type} />
 
           <Flex direction="column">
             <Heading marginTop="size-0" marginBottom="size-75" level={3}>
@@ -50,7 +51,7 @@ export const TaskLayout = ({
       <Flex direction="row" justifyContent="space-between" alignItems="center" marginTop="size-300">
         {seeMoreBtnSection}
 
-        {completed && <StatusLight variant="positive">Ready</StatusLight>}
+        {statusSection}
       </Flex>
     </View>
   );

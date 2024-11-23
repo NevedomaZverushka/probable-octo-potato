@@ -9,7 +9,7 @@ const Tab = ({ item, state, onClick }) => {
   let ref = useRef();
   let { tabProps, isSelected } = useTab(item, state, ref);
 
-  const handleClick = useCallback(() => onClick(item["aria-label"]), [onClick, item]);
+  const handleClick = useCallback(() => onClick(item.key), [onClick, item]);
 
   return (
     <div {...tabProps} ref={ref} onClick={handleClick}>

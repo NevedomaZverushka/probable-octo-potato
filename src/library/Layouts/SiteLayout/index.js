@@ -1,38 +1,43 @@
 import { Flex, View } from "@adobe/react-spectrum";
 import { Outlet } from "react-router-dom";
-import { styles } from "./styles";
+import { useDeviceType } from "../../../hooks/useDeviceType";
 
 export const SiteLayout = ({ sideMenuSection, navigationSection }) => {
+  const { isMobile, isTablet } = useDeviceType();
+
   return (
-    <Flex direction={{ L: "row", S: "column" }} height="100vh">
+    <Flex direction={{ L: "row", base: "column" }} height="100vh">
       <View
-        backgroundColor="blue-200"
-        width={{ L: "size-900", S: "100vw" }}
-        height={{ L: "auto", S: "size-600" }}
+        height={{ L: "auto", base: "size-600" }}
+        width={{ L: "size-900", base: "auto" }}
+        paddingY={{ L: "size-300", base: "size-0" }}
+        paddingX={{ L: "size-0", base: "size-100" }}
+        backgroundColor="blue-300"
         borderColor="gray-400"
         borderEndWidth="thin"
         colorVersion="6"
-        paddingY="size-300"
       >
         {sideMenuSection}
       </View>
 
       <View
-        backgroundColor="gray-100"
-        width="size-3600"
+        width="size-3400"
         padding="size-200"
+        backgroundColor="gray-100"
         borderColor="gray-400"
         borderEndWidth="thin"
+        isHidden={isTablet || isMobile}
+        colorVersion="6"
       >
         {navigationSection}
       </View>
 
       <View
-        UNSAFE_className={styles.contentSection}
+        flex="1"
+        paddingTop={{ L: "size-500", base: "size-300" }}
         backgroundColor="gray-75"
-        width="100%"
-        paddingStart="size-500"
-        paddingY="size-500"
+        overflow="hidden"
+        colorVersion="6"
       >
         <Outlet />
       </View>

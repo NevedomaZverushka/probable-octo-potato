@@ -1,4 +1,4 @@
-import { ButtonGroup, Content, Dialog, DialogTrigger, Divider, Flex, Header, StatusLight } from "@adobe/react-spectrum";
+import { ButtonGroup, Content, Dialog, DialogTrigger, Divider, Flex, Header } from "@adobe/react-spectrum";
 import { PrimaryButton } from "../../Atoms/Button/PrimaryButton";
 import { SecondaryButton } from "../../Atoms/Button/SecondaryButton";
 import { Heading } from "../../Atoms/Heading";
@@ -11,8 +11,8 @@ export const Modal = ({
   descriptionSection,
   dueAtSection,
   buttonSection,
+  statusSection,
   onSubmit,
-  completed,
 }) => {
   return (
     <DialogTrigger>
@@ -36,7 +36,7 @@ export const Modal = ({
             <Flex direction="row" justifyContent="space-between">
               <SecondaryText>Due at: {dueAtSection}</SecondaryText>
 
-              {completed && <StatusLight variant="positive">Ready</StatusLight>}
+              {statusSection}
             </Flex>
           </Content>
 

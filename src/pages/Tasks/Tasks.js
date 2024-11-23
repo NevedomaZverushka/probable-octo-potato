@@ -1,5 +1,5 @@
 import { size } from "lodash";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch } from "../../hooks/useDispatch";
 import { retrieveCompletedTasks, retrieveTodoTasks, useStore } from "../../hooks/useStore";
 import { DashboardLayout } from "../../library/Layouts/DashboardLayout";
@@ -12,6 +12,16 @@ export const Tasks = () => {
   const completedTasks = useStore(retrieveCompletedTasks);
 
   const { onCompleteTask } = useDispatch();
+
+  const todoTasksList = useMemo(() => {
+    return todoTasks
+      .sort(({ dueOnDate: prev }, { dueOnDate: curr }) => new Date(prev) - new Date(curr))
+      .map(({ taskId }) => ({ id: taskId, name: taskId }));
+  }, [todoTasks]);
+
+  const completedTasksList = useMemo(() => {
+    return completedTasks.map(({ taskId }) => ({ id: taskId, name: taskId }));
+  }, [completedTasks]);
 
   const handleCompleteTask = useCallback(
     (ids) => {
@@ -26,8 +36,8 @@ export const Tasks = () => {
       todoSection={
         !!size(todoTasks) && (
           <DraggableFromList
-            key={todoTasks}
-            data={[...todoTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
+            key={todoTasksList}
+            data={todoTasksList}
             Component={(props) => <Task {...props} />}
             onDragEnd={handleCompleteTask}
           />
@@ -36,8 +46,8 @@ export const Tasks = () => {
       completedSection={
         !!size(completedTasks) && (
           <DroppableList
-            key={completedTasks}
-            data={[...completedTasks.map(({ taskId }) => ({ id: taskId, name: taskId }))]}
+            key={completedTasksList}
+            data={completedTasksList}
             Component={(props) => <Task {...props} />}
           />
         )
