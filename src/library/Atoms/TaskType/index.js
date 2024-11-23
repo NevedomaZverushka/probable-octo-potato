@@ -1,5 +1,6 @@
 import { Avatar } from "@adobe/react-spectrum";
 import { useMemo } from "react";
+import { useDeviceType } from "../../../hooks/useDeviceType";
 import bag from "../../../sources/icons/bag.png";
 import bloodpressure from "../../../sources/icons/bloodpresure.png";
 import brain from "../../../sources/icons/brain.png";
@@ -11,9 +12,11 @@ import mealtest from "../../../sources/icons/mealtest.png";
 import urine from "../../../sources/icons/urin.png";
 
 export const TaskType = ({ type }) => {
+  const { isMobile } = useDeviceType();
+
   const src = useMemo(() => {
     return { bag, urine, mealtest, glucosetest, feces, fasting, calendar, brain, bloodpressure }[type];
   }, [type]);
 
-  return <Avatar size={50} src={src} alt={type} />;
+  return <Avatar size={isMobile ? 35 : 50} src={src} alt={type} />;
 };

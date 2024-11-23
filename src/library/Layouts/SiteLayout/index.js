@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useDeviceType } from "../../../hooks/useDeviceType";
 
 export const SiteLayout = ({ sideMenuSection, navigationSection }) => {
-  const { isMobile, isTablet } = useDeviceType();
+  const { isDesktop } = useDeviceType();
 
   return (
     <Flex direction={{ L: "row", base: "column" }} height="100vh">
@@ -26,7 +26,7 @@ export const SiteLayout = ({ sideMenuSection, navigationSection }) => {
         backgroundColor="gray-100"
         borderColor="gray-400"
         borderEndWidth="thin"
-        isHidden={isTablet || isMobile}
+        isHidden={!isDesktop}
         colorVersion="6"
       >
         {navigationSection}

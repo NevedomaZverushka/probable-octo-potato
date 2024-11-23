@@ -6,7 +6,7 @@ import { styles } from "./styles";
 
 const noop = () => {};
 
-export const PrimaryButton = ({ children, icon, onClick, ...props }) => {
+export const PrimaryButton = ({ children, startIcon, endIcon, onClick, ...props }) => {
   let ref = useRef();
   let { buttonProps } = useButton({ onPress: onClick || noop, children, ...props }, ref);
 
@@ -22,12 +22,14 @@ export const PrimaryButton = ({ children, icon, onClick, ...props }) => {
         borderRadius="medium"
         colorVersion="6"
       >
-        <Flex direction="row" gap="size-100" alignItems="center">
-          <Heading level={3} marginTop="size-0" marginBottom="size-75">
+        <Flex direction="row" gap="size-100" justifyContent="center" alignItems="center">
+          {startIcon}
+
+          <Heading level={3} marginTop="size-0" marginBottom="size-40">
             {children}
           </Heading>
 
-          {icon}
+          {endIcon}
         </Flex>
       </View>
     </div>

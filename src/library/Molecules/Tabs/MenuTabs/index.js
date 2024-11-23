@@ -1,31 +1,39 @@
 import { Flex, View } from "@adobe/react-spectrum";
 import { useCallback, useRef } from "react";
-import { mergeProps, useFocusRing, useTab, useTabList } from "react-aria";
+import { mergeProps, useButton, useFocusRing, useTab, useTabList } from "react-aria";
 import { useTabListState } from "react-stately";
 import { Heading } from "../../../Atoms/Heading";
 import { styles } from "./styles";
 
 const Tab = ({ item, state, onClick }) => {
   let ref = useRef();
-  let { tabProps, isSelected } = useTab(item, state, ref);
 
-  const handleClick = useCallback(() => onClick(item.key), [onClick, item]);
+  let { tabProps, isSelected } = useTab({ ...item }, state, ref);
+
+  const handleClick = useCallback(() => {
+    onClick(item.key);
+  }, [onClick, item]);
+
+  let buttonRef = useRef();
+  let { buttonProps } = useButton({ onPress: handleClick }, buttonRef);
 
   return (
-    <div {...tabProps} ref={ref} onClick={handleClick}>
-      <View
-        UNSAFE_className={styles.tab}
-        backgroundColor={isSelected && "blue-200"}
-        padding="size-115"
-        borderRadius="medium"
-        colorVersion="6"
-      >
-        <Heading level={3} margin="size-0">
-          <Flex direction="row" alignItems="center" gap="size-200">
-            {item.rendered}
-          </Flex>
-        </Heading>
-      </View>
+    <div {...tabProps} ref={ref}>
+      <div {...buttonProps} ref={buttonRef}>
+        <View
+          UNSAFE_className={styles.tab}
+          backgroundColor={isSelected && "blue-200"}
+          padding="size-115"
+          borderRadius="medium"
+          colorVersion="6"
+        >
+          <Heading level={3} margin="size-0">
+            <Flex direction="row" alignItems="center" gap="size-200">
+              {item.rendered}
+            </Flex>
+          </Heading>
+        </View>
+      </div>
     </div>
   );
 };

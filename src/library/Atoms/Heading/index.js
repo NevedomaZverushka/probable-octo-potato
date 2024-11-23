@@ -1,9 +1,10 @@
 import { Heading as SpectrumHeading } from "@adobe/react-spectrum";
+import { cx } from "@emotion/css";
 import { styles } from "./styles";
 
-export const Heading = ({ children, level, ...props }) => {
+export const Heading = ({ UNSAFE_className, children, level, ...props }) => {
   return (
-    <SpectrumHeading UNSAFE_className={styles.heading} level={level ?? 2} {...props}>
+    <SpectrumHeading UNSAFE_className={cx(UNSAFE_className, styles.heading)} level={level ?? 2} {...props}>
       {children}
     </SpectrumHeading>
   );

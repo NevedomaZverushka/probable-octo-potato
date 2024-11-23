@@ -8,7 +8,7 @@ export const styles = {
     transform: scale(0.5);
     opacity: 1;
   `,
-  description: css`
+  overflow: css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

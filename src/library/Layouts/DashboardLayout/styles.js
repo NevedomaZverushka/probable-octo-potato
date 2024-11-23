@@ -1,13 +1,15 @@
 import { css } from "@emotion/css";
 
 export const styles = {
-  dashboard: css`
-    overflow-x: auto;
-    overflow-y: hidden;
+  dashboard: (isMobile) => css`
+    overflow: ${isMobile ? "hidden" : "auto"};
   `,
   column: css`
     border-style: dashed !important;
 
-    overflow-y: auto;
+    overflow: auto;
+  `,
+  opacity: css`
+    opacity: 0.4;
   `,
 };

@@ -24,7 +24,7 @@ export const Task = ({ id, isPreview }) => {
       dueAtSection={format(new Date(task.dueOnDate), "MMM dd, yyyy HH:mm")}
       seeMoreBtnSection={
         <Modal
-          triggerButtonSection={<PrimaryButton icon={<ChevronRight size="S" />}>See more</PrimaryButton>}
+          triggerButtonSection={<PrimaryButton endIcon={<ChevronRight size="S" />}>See more</PrimaryButton>}
           titleSection={task.title}
           idSection={first(task.taskId.split("-"))}
           descriptionSection={task.description}
