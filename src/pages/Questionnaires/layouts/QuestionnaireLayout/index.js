@@ -32,8 +32,6 @@ export const QuestionnaireLayout = ({ titleSection, idSection, seeMoreBtnSection
 
           {statusSection}
         </Flex>
-
-        <View marginTop="size-100">{seeMoreBtnSection}</View>
       </View>
     );
   }

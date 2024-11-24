@@ -77,6 +77,7 @@ export const DashboardLayout = ({ headerSection, todoSection, completedSection, 
                 maxWidth={{ L: "50%", M: "50%" }}
                 width={{ L: "50%", M: "50%" }}
                 minWidth={{ L: "size-5000", M: "size-5000", S: "size-3400", XS: "size-3400", base: "size-3400" }}
+                flex={{ S: "1" }}
                 marginBottom={{ L: "size-500", base: "size-300" }}
                 padding="size-200"
                 borderColor="gray-400"
