@@ -5,14 +5,14 @@ import { useTasks } from "./hooks/useTasks";
 export const StoreContext = createContext();
 
 export const StoreProvider = (props) => {
-  const [{ tasks }, { onCompleteTask }] = useTasks();
-  const [{ questionnaires }, { onCompleteQuestionnaire }] = useQuestionnaires();
+  const [{ tasks, isLoading: isTasksLoading }, { onCompleteTask }] = useTasks();
+  const [{ questionnaires, isLoading: isQuestionnairesLoading }, { onCompleteQuestionnaire }] = useQuestionnaires();
 
   return (
     <StoreContext.Provider
       value={{
-        task: { tasks, callbacks: { onCompleteTask } },
-        questionnaire: { questionnaires, callbacks: { onCompleteQuestionnaire } },
+        task: { tasks, status: isTasksLoading, callbacks: { onCompleteTask } },
+        questionnaire: { questionnaires, status: isQuestionnairesLoading, callbacks: { onCompleteQuestionnaire } },
       }}
       {...props}
     />

@@ -1,7 +1,6 @@
-import { size } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "../../hooks/useDispatch";
-import { retrieveCompletedTasks, retrieveTodoTasks, useStore } from "../../hooks/useStore";
+import { retrieveCompletedTasks, retrieveTasksStatus, retrieveTodoTasks, useStore } from "../../hooks/useStore";
 import { DashboardLayout } from "../../library/Layouts/DashboardLayout";
 import { DraggableFromList } from "../../library/Organisms/DraggableList/DraggableFromList";
 import { DroppableList } from "../../library/Organisms/DraggableList/DroppableList";
@@ -10,6 +9,8 @@ import { Task } from "./components/Task/Task";
 export const Tasks = () => {
   const todoTasks = useStore(retrieveTodoTasks);
   const completedTasks = useStore(retrieveCompletedTasks);
+
+  const isTaskListLoading = useStore(retrieveTasksStatus);
 
   const { onCompleteTask } = useDispatch();
 
@@ -29,24 +30,17 @@ export const Tasks = () => {
     <DashboardLayout
       headerSection={"Review your tasks"}
       todoSection={
-        !!size(todoTasks) && (
-          <DraggableFromList
-            key={todoTasksList}
-            data={todoTasksList}
-            Component={(props) => <Task {...props} />}
-            onDragEnd={handleCompleteTask}
-          />
-        )
+        <DraggableFromList
+          key={todoTasksList}
+          data={todoTasksList}
+          Component={(props) => <Task {...props} />}
+          onDragEnd={handleCompleteTask}
+        />
       }
       completedSection={
-        !!size(completedTasks) && (
-          <DroppableList
-            key={completedTasksList}
-            data={completedTasksList}
-            Component={(props) => <Task {...props} />}
-          />
-        )
+        <DroppableList key={completedTasksList} data={completedTasksList} Component={(props) => <Task {...props} />} />
       }
+      loading={isTaskListLoading}
     />
   );
 };

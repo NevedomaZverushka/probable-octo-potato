@@ -18,6 +18,10 @@ export const retrieveTaskById = (state, id) => {
   return state.task.tasks.find(({ taskId }) => taskId === id);
 };
 
+export const retrieveTasksStatus = (state) => {
+  return state.task.status;
+};
+
 // Questionnaires
 export const retrieveCompletedQuestionnaires = (state) => {
   return state.questionnaire.questionnaires.filter(({ isCompleted }) => isCompleted);
@@ -28,4 +32,8 @@ export const retrieveTodoQuestionnaires = (state) => {
 
 export const retrieveQuestionnaireById = (state, id) => {
   return state.questionnaire.questionnaires.find(({ questionnaireId }) => questionnaireId === id);
+};
+
+export const retrieveQuestionnairesStatus = (state) => {
+  return state.questionnaire.status;
 };
