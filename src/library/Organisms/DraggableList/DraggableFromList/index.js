@@ -1,8 +1,7 @@
-import { cx } from "@emotion/css";
 import { first } from "lodash";
-import { ListBox, ListBoxItem, useDragAndDrop } from "react-aria-components";
+import { useDragAndDrop } from "react-aria-components";
 import { useListData } from "react-stately";
-import { styles } from "./styles";
+import { List } from "../../../Molecules/List";
 
 export const DraggableFromList = ({ data, Component, onDragEnd }) => {
   let listFrom = useListData({
@@ -24,13 +23,6 @@ export const DraggableFromList = ({ data, Component, onDragEnd }) => {
   });
 
   return (
-    <ListBox
-      className={cx("react-aria-ListBox", styles.list)}
-      aria-label="Draggable list"
-      items={listFrom.items}
-      dragAndDropHooks={dragAndDropHooks}
-    >
-      {(item) => <ListBoxItem>{Component(item)}</ListBoxItem>}
-    </ListBox>
+    <List aria-label="Draggable list" data={listFrom.items} dragAndDropHooks={dragAndDropHooks} Component={Component} />
   );
 };

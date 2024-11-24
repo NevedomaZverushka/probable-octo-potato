@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import { prepareSizeVar } from "../../../../utils/ui";
+import { prepareSizeVar } from "../../../utils/ui";
 
 export const styles = {
   list: css`

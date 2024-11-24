@@ -1,7 +1,6 @@
-import { cx } from "@emotion/css";
-import { ListBox, ListBoxItem, useDragAndDrop } from "react-aria-components";
+import { useDragAndDrop } from "react-aria-components";
 import { useListData } from "react-stately";
-import { styles } from "./styles";
+import { List } from "../../../Molecules/List";
 
 export const DroppableList = ({ data, Component }) => {
   let listTo = useListData({
@@ -23,13 +22,6 @@ export const DroppableList = ({ data, Component }) => {
   });
 
   return (
-    <ListBox
-      className={cx("react-aria-ListBox", styles.list)}
-      aria-label="Droppable list"
-      items={listTo.items}
-      dragAndDropHooks={dragAndDropHooks}
-    >
-      {(item) => <ListBoxItem>{Component(item)}</ListBoxItem>}
-    </ListBox>
+    <List aria-label="Droppable list" data={listTo.items} dragAndDropHooks={dragAndDropHooks} Component={Component} />
   );
 };

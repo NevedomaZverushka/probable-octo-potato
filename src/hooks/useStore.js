@@ -6,13 +6,26 @@ export const useStore = (func) => {
   return func(state);
 };
 
+// Tasks
 export const retrieveCompletedTasks = (state) => {
-  return state.tasks.filter(({ isCompleted }) => isCompleted);
+  return state.task.tasks.filter(({ isCompleted }) => isCompleted);
 };
 export const retrieveTodoTasks = (state) => {
-  return state.tasks.filter(({ isCompleted }) => !isCompleted);
+  return state.task.tasks.filter(({ isCompleted }) => !isCompleted);
 };
 
 export const retrieveTaskById = (state, id) => {
-  return state.tasks.find(({ taskId }) => taskId === id);
+  return state.task.tasks.find(({ taskId }) => taskId === id);
+};
+
+// Questionnaires
+export const retrieveCompletedQuestionnaires = (state) => {
+  return state.questionnaire.questionnaires.filter(({ isCompleted }) => isCompleted);
+};
+export const retrieveTodoQuestionnaires = (state) => {
+  return state.questionnaire.questionnaires.filter(({ isCompleted }) => !isCompleted);
+};
+
+export const retrieveQuestionnaireById = (state, id) => {
+  return state.questionnaire.questionnaires.find(({ questionnaireId }) => questionnaireId === id);
 };

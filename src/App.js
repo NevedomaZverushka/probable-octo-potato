@@ -6,6 +6,7 @@ import { useTheme } from "./hooks/useTheme";
 import { SiteLayout } from "./library/Layouts/SiteLayout";
 import { NavigationTabs } from "./library/Navigation/NavigationTabs";
 import { SideMenu } from "./library/Navigation/SideMenu";
+import { Questionnaires } from "./pages/Questionnaires/Questionnaires";
 import { Tasks } from "./pages/Tasks/Tasks";
 import "./utils/globalStyles";
 
@@ -21,7 +22,7 @@ function App() {
             element={<SiteLayout sideMenuSection={<SideMenu />} navigationSection={<NavigationTabs />} />}
           >
             <Route path="/tasks" element={<Tasks />} />
-            <Route path="/questionnaires" element={<div>hello questionnaires</div>} />
+            <Route path="/questionnaires" element={<Questionnaires />} />
           </Route>
         </Routes>
       </StoreProvider>

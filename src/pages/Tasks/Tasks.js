@@ -3,8 +3,8 @@ import { useCallback, useMemo } from "react";
 import { useDispatch } from "../../hooks/useDispatch";
 import { retrieveCompletedTasks, retrieveTodoTasks, useStore } from "../../hooks/useStore";
 import { DashboardLayout } from "../../library/Layouts/DashboardLayout";
-import { DraggableFromList } from "../../library/Molecules/DraggableList/DraggableFromList";
-import { DroppableList } from "../../library/Molecules/DraggableList/DroppableList";
+import { DraggableFromList } from "../../library/Organisms/DraggableList/DraggableFromList";
+import { DroppableList } from "../../library/Organisms/DraggableList/DroppableList";
 import { Task } from "./components/Task/Task";
 
 export const Tasks = () => {
@@ -23,12 +23,7 @@ export const Tasks = () => {
     return completedTasks.map(({ taskId }) => ({ id: taskId, name: taskId }));
   }, [completedTasks]);
 
-  const handleCompleteTask = useCallback(
-    (ids) => {
-      ids.forEach((id) => onCompleteTask(id));
-    },
-    [onCompleteTask]
-  );
+  const handleCompleteTask = useCallback((ids) => ids.forEach((id) => onCompleteTask(id)), [onCompleteTask]);
 
   return (
     <DashboardLayout
