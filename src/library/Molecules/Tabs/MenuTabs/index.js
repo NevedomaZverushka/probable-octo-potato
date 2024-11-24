@@ -17,9 +17,11 @@ const Tab = ({ item, state, onClick }) => {
   let buttonRef = useRef();
   let { buttonProps } = useButton({ onPress: handleClick }, buttonRef);
 
+  let { focusProps } = useFocusRing({ within: true });
+
   return (
     <div {...tabProps} ref={ref}>
-      <div {...buttonProps} ref={buttonRef}>
+      <div {...mergeProps(buttonProps, focusProps)} ref={buttonRef}>
         <View
           UNSAFE_className={styles.tab}
           backgroundColor={isSelected && "blue-200"}
